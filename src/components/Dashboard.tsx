@@ -137,14 +137,15 @@ const Dashboard = () => {
       setMetricNames(metricsNamesList);
 
       const responseData = await getMulitpleMeasurementsData(metricsNamesList);
-      const transformedData = transformToChartData(responseData);
-      setInitialData(transformedData);
-
+      
       let tempData: Measurement[] = [];
       metricsNamesList.forEach((metric: string) => {
         tempData.push({ metric: metric, at: 0, value: 0, unit: '' });
       });
       setLatestData(tempData);
+      
+      const transformedData = transformToChartData(responseData);
+      setInitialData(transformedData);
     };
     initialFetch();
   }, []);
